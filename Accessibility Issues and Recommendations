@@ -33,9 +33,10 @@ Fix: Rename and reposition for clarity.
 <button aria-label="Add another email address">Add More</button>
 
 7. Radio Buttons:
-Issue: "Primary" radio button is skipped over.
-Fix: Ensure it has a proper aria-label and is grouped with other radio buttons
-<input type="radio" id="primary-email" name="email-option" aria-label="Primary email">
+Issue: "Primary" toggle switch is skipped over.
+Fix: Use the role="switch" attribute to identify the element as a toggle switch for screen readers.
+Ensure that the toggle switch has an appropriate aria-checked attribute to indicate its current state (either true or false).
+Provide a clear aria-label to describe the switch's function.
 
 8. Close ("X") Button:
 Issue: The “X” close button is skipped over.
