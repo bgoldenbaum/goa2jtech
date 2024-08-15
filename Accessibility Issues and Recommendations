@@ -32,11 +32,18 @@ Issue: The button is not descriptive enough.
 Fix: Rename and reposition for clarity.
 <button aria-label="Add another email address">Add More</button>
 
-7. Radio Buttons:
-Issue: "Primary" toggle switch is skipped over.
-Fix: Use the role="switch" attribute to identify the element as a toggle switch for screen readers.
-Ensure that the toggle switch has an appropriate aria-checked attribute to indicate its current state (either true or false).
+7. Toggle Switch
+Issue: The "Primary" toggle switch is being skipped over by screen readers.
+Fix: Use role="switch" to identify the element as a toggle switch.
+Ensure the aria-checked attribute indicates the current state (true or false).
 Provide a clear aria-label to describe the switch's function.
+
+<!-- Example when the switch is off: -->
+<div role="switch" aria-checked="false" aria-label="Set as primary email">Primary</div>
+
+<!-- Example when the switch is on: -->
+<div role="switch" aria-checked="true" aria-label="Set as primary email">Primary</div>
+
 
 8. Close ("X") Button:
 Issue: The “X” close button is skipped over.
