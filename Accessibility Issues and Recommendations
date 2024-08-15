@@ -1,0 +1,60 @@
+1. Button Labels:
+Issue: Magnifying glass icons (Zoom in/out) and the full-screen button are read as “clickable” without indicating their function.
+Fix: Add aria-label or title attributes.
+<button aria-label="Zoom in button">...</button>
+<button aria-label="Zoom out button">...</button>
+
+2. Heading Structure:
+Issue: "Test" heading reads as Heading Level 3 instead of Heading Level 1.
+Fix: Use <h1> for "Test" and <h2> for "Title."
+<h1>Test</h1>
+<h2>Title</h2>
+
+3. Required Fields:
+
+Issue: Asterisks are read as "star" without indicating the field is required.
+Fix: Use aria-required="true" and add descriptive text.
+<label for="field1">Name <span aria-hidden="true">*</span></label>
+<input id="field1" aria-required="true" aria-describedby="required-desc"> 
+<span id="required-desc" class="sr-only">This field is required.</span>
+
+4. Error Messages:
+Issue: "Field is required" message is not read aloud.
+Fix: Implement ARIA live regions and adjust focus.
+<div aria-live="polite">Field is required</div>
+
+5. Calendar Widget:
+Issue: Link address is read aloud before calendar instructions.
+Fix: Ensure the instructions are announced first by adjusting focus or ARIA attributes.
+
+6. "Add More" Button:
+Issue: The button is not descriptive enough.
+Fix: Rename and reposition for clarity.
+<button aria-label="Add another email address">Add More</button>
+
+7. Radio Buttons:
+Issue: "Primary" radio button is skipped over.
+Fix: Ensure it has a proper aria-label and is grouped with other radio buttons
+<input type="radio" id="primary-email" name="email-option" aria-label="Primary email">
+
+8. Close ("X") Button:
+Issue: The “X” close button is skipped over.
+Fix: Add aria-label for screen reader recognition.
+<button aria-label="Close modal">X</button>
+
+9. "Type" Label and Input:
+Issue: The label "Type" and placeholder "Type here" are confusing.
+Fix: Change the label to something more descriptive.
+<label for="category">Category</label>
+<input id="category" placeholder="Enter category">
+
+10. Form Field Question:
+Issue: “Originated in Clio?” does not sound like a question.
+Fix: Rephrase it to a full sentence or explicit question "Did this originate in Clio?"
+
+11. Accessibility Widget:
+Issue: The widget is read as “Clickable” without indicating its function, and NVDA doesn't recognize it as a modal.
+Fix:
+Add aria-label for clarity.
+<button aria-label="Accessibility options">Accessibility Widget</button>
+Ensure modal is properly coded with role="dialog" and aria-modal="true".
