@@ -66,3 +66,94 @@ Fix:
 Add aria-label for clarity.
 <button aria-label="Accessibility options">Accessibility Widget</button>
 Ensure modal is properly coded with role="dialog" and aria-modal="true".
+
+12. 1. Navigation via Table of Contents
+Issue: When navigating through the table of contents, clicking a category link does not automatically move the focus to the corresponding content section.
+// Example code to move focus to the corresponding section
+document.querySelectorAll('.toc-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        // Move focus to the target element
+        targetElement.focus();
+    });
+});
+Make sure that the target elements have tabindex="-1" to ensure they can receive focus:
+<div id="section1" tabindex="-1">
+    <!-- Section content -->
+</div>
+
+13. Screen Reader Announcement for Modals
+Issue: The screen reader does not automatically announce the content within the modal when it is opened.
+// Example code to set focus to the first focusable element within the modal
+document.getElementById('openModalButton').addEventListener('click', function() {
+    const modal = document.getElementById('myModal');
+    
+    // Move focus to the modal
+    modal.style.display = 'block';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    
+    // Focus on the first input or interactive element in the modal
+    const focusableElement = modal.querySelector('input, button, [href], [tabindex]:not([tabindex="-1"])');
+    if (focusableElement) {
+        focusableElement.focus();
+    }
+});
+Ensure the modal has proper ARIA attributes:
+<div id="myModal" role="dialog" aria-modal="true" tabindex="-1">
+    <h2 id="modalTitle">Modal Title</h2>
+    <p>Modal content goes here...</p>
+    <button id="closeModalButton">Close</button>
+</div>
+
+14. Reading Content in Sections
+Issue: The content of the associated section or table is not automatically read aloud by the screen reader after clicking a category link.
+document.querySelectorAll('.toc-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        // Move focus to the target element to trigger screen reader announcement
+        targetElement.focus();
+    });
+});
+
+15.  Modal Pop-Up Accessibility
+Issue:When a modal pops up, the screen reader continues to read the background content.
+document.getElementById('openModalButton').addEventListener('click', function() {
+    const modal = document.getElementById('myModal');
+    const mainContent = document.getElementById('mainContent');
+
+    // Hide the background content from screen readers
+    mainContent.setAttribute('aria-hidden', 'true');
+
+    // Move focus to the modal
+    modal.style.display = 'block';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.querySelector('[tabindex]').focus();
+});
+
+document.getElementById('closeModalButton').addEventListener('click', function() {
+    const modal = document.getElementById('myModal');
+    const mainContent = document.getElementById('mainContent');
+
+    // Show the background content to screen readers
+    mainContent.removeAttribute('aria-hidden');
+
+    // Hide the modal
+    modal.style.display = 'none';
+});
+
+Ensure the modal has proper ARIA attributes and focus trapping:
+
+<div id="myModal" role="dialog" aria-modal="true" tabindex="-1">
+    <h2 id="modalTitle">Modal Title</h2>
+    <p>Modal content goes here...</p>
+    <button id="closeModalButton">Close</button>
+</div>
+
