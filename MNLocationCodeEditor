@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zip Code Search</title>
+  
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body, p, input, button, a {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    /* Initial styling for the Apply For Legal Aid button */
+    #regionWebsite {
+      padding: 12px;
+      background-color: #005f9f; /* Brighter blue as the initial color */
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      width: 150px;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+    }
+
+    /* Hover effect for the Apply For Legal Aid button */
+    #regionWebsite:hover {
+      background-color: #063050; /* Darker blue when hovered */
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="zipCodeSearch" style="margin-bottom: 20px; max-width: 100%; background-color: #0D5780; padding: 0px; border-radius: 10px; box-sizing: border-box;">
+    <p style="font-size: 14px; color: white; text-align: left; margin-bottom: 10px;">Search by your home zip code below</p>
+    <div style="display: flex; width: 100%; box-sizing: border-box;">
+      <input type="text" id="zipCodeInput" placeholder="Enter Zip Code" style="flex-grow: 1; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px 0 0 5px; box-sizing: border-box;">
+      <button id="searchZipButton" style="padding: 12px; background-color: #518302; border: 1px solid #FFFFFF; color: white; font-size: 14px; border-radius: 0 5px 5px 0; cursor: pointer; width: 150px; box-sizing: border-box;">Submit</button>
+    </div>
+  </div>
+
+  <div id="regionInfo" style="display:none; text-align: center; border: 2px solid #ddd; padding: 40px; margin: 0 auto; max-width: 800px; background-color: white; border-radius: 10px;">
+    <img id="regionLogo" src="" alt="Organization Logo" style="max-width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+    <p id="regionContactInfo" style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">Legal Service Organization Name</p>
+    <a id="regionWebsite" href="" target="_blank">Apply For Legal Aid</a>
+    <p id="errorMessage" style="color: red; font-size: 16px; display:none; margin-top: 15px;"></p>
+  </div>
+
+  <script>
+    // Get the input field and button
+    var input = document.getElementById("zipCodeInput");
+    var submitButton = document.getElementById("searchZipButton");
+
+    // Execute the same action as clicking the submit button when Enter is pressed
+    input.addEventListener("keydown", function(event) {
+      if (event.keyCode === 13) {  // 13 is the Enter key code
+        event.preventDefault();    // Prevent the default action (form submission)
+        submitButton.click();      // Trigger the click on the submit button
+      }
+    });
+  </script>
+  
+</body>
+</html>
